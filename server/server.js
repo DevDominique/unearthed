@@ -1,13 +1,17 @@
 import express from 'express';
+import './config/dotenv.js';
 import giftsRouter from './routes/gifts.js';
+import cors from 'cors';
 
 //Initialize the Express app
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 /*serve static files from public/scripts dir by settin up
 middleware using default express.static f(x) */
-app.use('/public', express.static('./public'));
-app.use('/scripts', express.static('./public/scripts'));
+// app.use('/public', express.static('./public'));
+// app.use('/scripts', express.static('./public/scripts'));
 app.use('/gifts', giftsRouter);
 
 /*Define a rte for server root URL with params
